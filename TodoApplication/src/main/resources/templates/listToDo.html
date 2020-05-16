@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <script th:href="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+
+<h1>To Do List</h1>
+
+<ul>
+    <li th:each="todo : ${list}" >
+
+        <span th:text="*{todo.getTask()}" ></span> : <span th:text="*{todo.getDetail()}" ></span>
+    </li>
+</ul>
+
+<a th:href="@{/addToDo}" class="btn btn-success">Add The Task</a>
+
+</body>
+</html>

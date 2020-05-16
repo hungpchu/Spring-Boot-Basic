@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add To Do</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <script th:href="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+    <h1>Add the tasks</h1>
+<form th:action="@{/addToDo}" th:object="${newTask}" method="post">
+    <p>task:  <input type="text" th:field="*{task}"/>  </p>
+    <p>detail:  <input type="text" th:field="*{detail}"/>  </p>
+    <p> <button type="submit" class="btn btn-success">Add</button> </p>
+</form>
+</body>
+</html>
