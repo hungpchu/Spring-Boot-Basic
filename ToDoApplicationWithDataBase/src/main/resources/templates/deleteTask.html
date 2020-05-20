@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>To Do Application</title>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <script th:href="@{js/bootstrap.js}"></script>
 </head>
 <body>
-$END$
+<h1>Delete Task</h1>
+<form th:href="@{/deleteTask}"  method="post">
+    <p> Input Value : <input type="text" th:value="*{deleteKey}" name="deleteKey"></p>
+    <p><button type="submit" class="btn btn-success">Delete</button></p>
+</form>
 </body>
 </html>

@@ -1,4 +1,23 @@
 package com.example.hungpchu.SpringJPA.Repository;
 
-public class UserRepository {
+import com.example.hungpchu.SpringJPA.Model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    List<User> findAllByAtk(int atks);
+
+    List<User> findAllByAgiBetween(int start, int end);
+
+    @Query("SELECT u FROM User u WHERE u.def = :def")
+    List<User> findUserByDefQuery(@Param("def") Integer def);
+
+    List<User> findAllByAgiGreaterThan(int agiThreshold);
+
 }

@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>ToDo Application</title>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <script th:href="@{/js/bootstrap.js}"></script>
 </head>
 <body>
-$END$
+<h1>Add To List</h1>
+
+<form th:action="@{/addToList}" th:object="${newTask}" method="post">
+   <p>Title : <input type="text" th:field="*{title}"> </p>
+    <p>Detail : <input type="text" th:field="*{detail}"> </p>
+    <p> <button type="submit" class="btn btn-success">Add</button></p>
+</form>
+
 </body>
 </html>
