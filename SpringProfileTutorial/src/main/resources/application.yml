@@ -1,8 +1,11 @@
+# Can only switch between local
+# and aws for the value of spring.profiles.active
 
 spring:
   profiles:
     active: local
-
+#tell the profile to include what
+# configuration files in the profiles
 ---
 spring.profiles: local
 spring.profiles.include: common, local
