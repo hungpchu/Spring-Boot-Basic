@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<h1>Only authorized user can access this page</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out" />
+</form>
+
+<p><a href="/home">Back Home</a> </p>
+
+</body>
+</html>
