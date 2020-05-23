@@ -1,6 +1,8 @@
+Link google:
+1. ```https://docs.google.com/document/d/1RbD23EcdgEbEk4hVVcKyG6antK0F5cDfBKSfaUJHxMI/edit```
+
 
 How to use:
-
 1. Open the Postman
 2. Hit the http://localhost:8080/api/signUp with post method and body of type json 
 ```
