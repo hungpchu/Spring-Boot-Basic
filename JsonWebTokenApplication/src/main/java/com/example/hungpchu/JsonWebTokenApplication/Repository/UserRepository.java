@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * help for the database logic connection
+ */
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
     User findUserByUsername(String username);
 
     @Query("SELECT u FROM User u WHERE u.username = :username AND u.password = :password")
     List<User> findUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+
 }

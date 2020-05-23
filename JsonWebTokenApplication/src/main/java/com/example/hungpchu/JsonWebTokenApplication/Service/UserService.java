@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * bid deal class to implements UserDetailService to configure in the WebSecurityConfig
+ * providing for AuthenticationManagerBuilder object
+ */
 @Service
 public class UserService implements UserDetailsService {
 
@@ -30,6 +34,5 @@ public class UserService implements UserDetailsService {
     public List<User> loadUserByUsernameAndPassword(String username, String password){
         return userRepository.findUserByUsernameAndPassword(username,password);
     }
-
 
 }

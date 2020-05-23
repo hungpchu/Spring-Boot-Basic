@@ -4,6 +4,7 @@ import com.example.hungpchu.JsonWebTokenApplication.Model.User;
 import com.example.hungpchu.JsonWebTokenApplication.Payload.LoginRequest;
 import com.example.hungpchu.JsonWebTokenApplication.Payload.RandomStuff;
 import com.example.hungpchu.JsonWebTokenApplication.Repository.UserRepository;
+import com.example.hungpchu.JsonWebTokenApplication.Service.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class WebController {
 
     /**
-     * post /login method by the Spring security
+     * post /login method created by the Spring security
+     * using JwtLoginFilter
      */
 
     @Autowired
@@ -22,6 +24,11 @@ public class WebController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    /**
+     * Method using JwtAuthenticationFilter
+     * @param loginRequest
+     * @return
+     */
     @PostMapping("/signUp")
     public User signUp(@RequestBody LoginRequest loginRequest)
     {
@@ -32,11 +39,14 @@ public class WebController {
             return user;
     }
 
+    /**
+     * Method using JwtAuthenticationFilter
+     * @return
+     */
     @GetMapping("/random")
     public RandomStuff randomStuff()
     {
-        System.out.println("random boo");
-        return new RandomStuff("Good Job Boy with valid JWT");
+        return new RandomStuff("Good Job Boy with valid JWT", TokenAuthenticationService.getAuth());
     }
 }
 

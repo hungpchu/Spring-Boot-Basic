@@ -18,6 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Class này chịu trách nhiệm cho configuration bean và enableWebSecurity
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -38,12 +41,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * AuthenticationManagerBuilder to confiure the userService and passwordEncoder
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.userDetailsService(userService) // Cung cáp userservice cho spring security
                 .passwordEncoder(passwordEncoder()); // cung cấp password encoder
     }
+
 
     @Override
     public void configure(WebSecurity web)
@@ -52,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * ignore so I can view localhost:8080/h2-console online
          */
         web.ignoring()
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**", "/api/signUp");
     }
 
 
@@ -69,9 +78,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated(); // Tất cả các request khác đều cần phải xác thực mới được truy cập
 
 
-
+        /**
+         * Taọ mỗi lớp filter khác nhau cho /login và other method
+         */
         httpSecurity.addFilterBefore(new JwtLoginFilter("/login", userService, authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-                    .addFilterBefore(new JwtAuthenticationFiler(), UsernamePasswordAuthenticationFilter.class);
+                    .addFilterBefore(new JwtAuthenticationFiler(userService), UsernamePasswordAuthenticationFilter.class);
 
 
 
